@@ -15,32 +15,49 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/client.min.js"></script>
+
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand topnav" href="#">Device fingerprint</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-        </div>
-    </nav>
-	<a  name="clientjs"></a>
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+      <div class="container topnav">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand topnav" href="#">Device Fingerprint Test</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a href="#fingerprint2">Fingerprint2JS</a>
+                  </li>
+                  <li>
+                      <a href="#clientjs">ClientJS</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
+	<a  name="fingerprint2"></a>
     <div class="content-section-a">
 
-        <div class="container">
+      <div class="container">
           <div class="row">
               <div class="col-lg-5 col-sm-6">
                   <hr class="section-heading-spacer">
                   <div class="clearfix"></div>
-                  <h2 class="section-heading">Fingerprint2.js:</h2>
-                    <p class = "lead">Your browser fingerprint: <strong id="fp"></strong></p>
-                    <p class = "lead"><code id="time"/></p>
-                    <p class = "lead"><span id="details"/></p>
-                    <button type="button" id="btn">Get my fingerprint</button>
+                  <h2 style="color:black" class="section-heading">Fingerprint2.js:</h2>
+                    <p style="color:black" class = "lead">Browser fingerprint ID: <strong id="fp"></strong></p>
+                    <button style="color:black" type="button" id="btn">Get my fingerprint</button>
                     <script src="js/fingerprint2.min.js"></script>
                     <script>
                       $("#btn").on("click", function () {
@@ -49,7 +66,7 @@
                         fp.get(function(result, components) {
                           var d2 = new Date();
                           var timeString = "Time took to calculate the fingerprint: " + (d2 - d1) + "ms";
-                          var details = "<strong>Detailed information: </strong><br />";
+                          var details = "<strong>Your device information: </strong><br />";
                           if(typeof window.console !== "undefined") {
                             console.log(timeString);
                             console.log(result);
@@ -67,13 +84,64 @@
                         });
                       });
                     </script>
+                    <div class="clearfix"></div>
+                    <p style="color:blue"><code id="time"/></p>
+                    <p style="color:blue"><span id="details"/></p>
               </div>
           </div>
-        </div>
+      </div>
         <!-- /.container -->
 
     </div>
     <!-- /.content-section-a -->
+    <a  name="clientjs"></a>
+      <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 style="color:black" class="section-heading">ClientJS:</h2>
+                      <p style="color:black" class = "lead">Browser fingerprint ID: <strong id="fp2"></strong></p>
+                      <button style="color:black" type="button" id="btn2">Get my fingerprint</button>
+                      <script>
+                        $("#btn2").on("click", function () {
+                          var d1 = new Date();
+                            var client = new ClientJS();
+                            var fingerprint = client.getFingerprint();
+                            var d2 = new Date();
+                            var timeString = "Time took to calculate the fingerprint: " + (d2 - d1) + "ms";
+
+                            var details = "<strong>Your device information: </strong><br />";
+                            details += "user_agent: " + client.getUserAgent() + "<br />";
+                            details += "language: " + client.getLanguage() + "<br />";
+                            details += "OS: " + client.getOS() + client.getOSVersion()+ "<br />";
+                            details += "CPU: " + client.getCPU()+ "<br />";
+                            details += "is_mobile: " + client.isMobile()+ "<br />";
+                            details += "is_Android: " + client.isMobileAndroid()+ "<br />";
+                            details += "is_mobile_IOS: " + client.isMobileIOS()+ "<br />";
+                            details += "is_iphone: " + client.isIphone()+ "<br />";
+                            details += "screen: " + client.getScreenPrint()+ "<br />";
+                            details += "plugins: " + client.getPlugins()+ "<br />";
+                            details += "mine_types: " + client.getMimeTypes()+ "<br />";
+                            details += "fonts: " + client.getFonts()+ "<br />";
+                            details += "cookie_available: " + client.isCookie()+ "<br />";
+                            details += "canvas: " + client.getCanvasPrint()+ "<br />";
+                            $("#fp2").text(fingerprint);
+                            $("#time2").text(timeString);
+                            $("#details2").html(details);
+                          });
+                      </script>
+                      <div class="clearfix"></div>
+                      <p style="color:blue"><code id="time2"/></p>
+                      <p style="color:blue"><span id="details2"/></p>
+
+                </div>
+            </div>
+        </div>
+          <!-- /.container -->
+
+      </div>
 
 </body>
 
