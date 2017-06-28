@@ -14,6 +14,7 @@
     <link href="css/landing-page.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.1.min.js"></script>
 </head>
 
 <body>
@@ -22,115 +23,57 @@
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand topnav" href="#">My home page</a>
+                <a class="navbar-brand topnav" href="#">Device fingerprint</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#fingerprintjs">FingerprintJS</a>
-                    </li>
-                    <li>
-                        <a href="#clientjs">ClientJS</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
-
-
-    <!-- Header -->
-    <a name="fingerprintjs"></a>
-    <div class="intro-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>Welcom to my page</h1>
-                        <h3>Share with me</h3>
-                        <hr class="intro-divider">
-                        <ul class="list-inline intro-social-buttons">
-                            <li>
-                                <a href="https://www.linkedin.com/in/john-lei-8684b677/" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                            </li>
-                            <li>
-                                <a href="https://www.facebook.com/johnalei" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/johnalei" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                            </li>
-                            <li>
-                                <!--<a href="https://github.com/johnalei" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                                -->
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.intro-header -->
-
-    <!-- Page Content -->
-
 	<a  name="clientjs"></a>
     <div class="content-section-a">
 
         <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Thoughts:<br>working spirits</h2>
-                    <p class="lead">A special thanks to <a target="_blank" href="#">this photo</a> Visit here to become a member.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/money.jpg" alt="">
-                </div>
-            </div>
-
+          <div class="row">
+              <div class="col-lg-5 col-sm-6">
+                  <hr class="section-heading-spacer">
+                  <div class="clearfix"></div>
+                  <h2 class="section-heading">Fingerprint2.js:</h2>
+                    <p class = "lead">Your browser fingerprint: <strong id="fp"></strong></p>
+                    <p class = "lead"><code id="time"/></p>
+                    <p class = "lead"><span id="details"/></p>
+                    <button type="button" id="btn">Get my fingerprint</button>
+                    <script src="js/fingerprint2.min.js"></script>
+                    <script>
+                      $("#btn").on("click", function () {
+                        var d1 = new Date();
+                        var fp = new Fingerprint2();
+                        fp.get(function(result, components) {
+                          var d2 = new Date();
+                          var timeString = "Time took to calculate the fingerprint: " + (d2 - d1) + "ms";
+                          var details = "<strong>Detailed information: </strong><br />";
+                          if(typeof window.console !== "undefined") {
+                            console.log(timeString);
+                            console.log(result);
+                            for (var index in components) {
+                              var obj = components[index];
+                              var value = obj.value;
+                              var line = obj.key + " = " + value.toString().substr(0, 100);
+                              console.log(line);
+                              details += line + "<br />";
+                            }
+                          }
+                          $("#details").html(details);
+                          $("#fp").text(result);
+                          $("#time").text(timeString);
+                        });
+                      });
+                    </script>
+              </div>
+          </div>
         </div>
         <!-- /.container -->
 
     </div>
     <!-- /.content-section-a -->
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#fingerprintjs">FingerprintJS</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#clientjs">ClientJS</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; John Lei 2016. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
