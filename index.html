@@ -19,6 +19,14 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
+  	<link rel="stylesheet" href="css/animate.css"/>
+  	<link rel="stylesheet" href="css/ekko-lightbox.css"/>
+
+  	<!-- Main Stylesheets -->
+  	<link rel="stylesheet" href="css/style.css"/>
+
     <!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     -->
 
@@ -158,19 +166,34 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Photograph</h2>
                     <p class="lead">A awesome mind is the garantee of an awesome day.<a target="_blank" href="#"></a> <a target="_blank" href="#"></a></p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/pictureinpicture.jpg" alt="">
-                </div>
+                    <div class="clearfix"></div>
+                    <div class="page-section gallery-page">
+                			<ul class="portfolio-filter">
+                				<li class="filter all active" data-filter="*">All</li>
+                				<li class="filter" data-filter=".events">Events</li>
+                				<li class="filter" data-filter=".duckstamp">DuckStamp</li>
+                				<li class="filter" data-filter=".animals">Animals</li>
+                				<li class="filter" data-filter=".sketch">Sketch</li>
+                				<li class="filter" data-filter=".scenery">Jiaoying's</li>
+                			</ul>
+                			<div class="portfolio-gallery">
+                				<div class="gallery-item scenery">
+                					<a href="img/gallery/scenery/pictureinpicture.jpg" data-toggle="lightbox" data-title="" data-footer="">
+                					    <img src="img/gallery/scenery/pictureinpicture.jpg" class="img-fluid">
+                					</a>
+                				</div>
+                		</div>
             </div>
 
-        </div>
         <!-- /.container -->
+        <!-- Page section -->
+    		<!-- Page section end-->
+      </div>
+
 
     </div>
     <!-- /.content-section-a -->
@@ -242,11 +265,23 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+  	<script src="js/owl.carousel.min.js"></script>
+  	<script src="js/jquery.nicescroll.min.js"></script>
+  	<script src="js/isotope.pkgd.min.js"></script>
+  	<script src="js/imagesloaded.pkgd.min.js"></script>
+  	<script src="js/circle-progress.min.js"></script>
+  	<script src="js/main.js"></script>
+  	<script src="js/ekko-lightbox.js"></script>
 
+    <script> $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+  	                event.preventDefault();
+  	                $(this).ekkoLightbox();
+  	            });
+    </script>
 </body>
 
 </html>
