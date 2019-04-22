@@ -29,13 +29,13 @@
 }
 
 .carousel-caption h3 {
-	font-size: 24px;
+	font-size: Large;
 	font-weight: 700;
 	font-style: italic;
   color: #ddd;
 }
 .carousel-caption p {
-  font-size: 15px;
+  font-size: Medium;
 	color: #aaa;
 }
 
